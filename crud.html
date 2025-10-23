@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Events – EventXpert</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a2e0e9b6d3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="brand">&#127967;&#65039; EventXpert</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="data.html">Data Visualization</a>
+      <a href="crud.html" class="active">Manage Events</a>
+      <a href="about.html">About Us</a>
+    </nav>
+  </header>
+
+  <main class="about-container">
+    <h2>CRUD Operations Demo</h2>
+    <p>This interactive section demonstrates how event records could be created, updated, or deleted. It simulates a real-world event manager tool for the EventXpert dataset.</p>
+
+    <div class="crud-container">
+      <div class="crud-buttons">
+        <button id="addBtn"><i class="fas fa-plus"></i> Add Event</button>
+        <button id="readBtn"><i class="fas fa-list"></i> Read Events</button>
+        <button id="updateBtn"><i class="fas fa-edit"></i> Update Price</button>
+        <button id="deleteBtn"><i class="fas fa-trash"></i> Delete Event</button>
+      </div>
+
+      <p id="crudStatus" style="text-align:center;color:#006747;font-weight:600;"></p>
+
+      <table id="eventTable">
+        <thead>
+          <tr>
+            <th>Match</th>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Price ($)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>USF Bulls vs UCF Knights</td><td>Oct 25, 2025</td><td>USF Stadium</td><td>30</td></tr>
+          <tr><td>Buccaneers vs Saints</td><td>Nov 2, 2025</td><td>Raymond James Stadium</td><td>80</td></tr>
+          <tr><td>Tampa Bay Lightning vs Hurricanes</td><td>Nov 6, 2025</td><td>Amalie Arena</td><td>60</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    const table = document.getElementById("eventTable").getElementsByTagName("tbody")[0];
+    const status = document.getElementById("crudStatus");
+
+    document.getElementById("addBtn").onclick = () => {
+      const newRow = table.insertRow();
+      newRow.innerHTML = "<td>New Event</td><td>Dec 1, 2025</td><td>Yuengling Center</td><td>45</td>";
+      status.innerHTML = "&#9989; Added new event successfully!";
+    };
+
+    document.getElementById("readBtn").onclick = () => {
+      status.innerHTML = "&#128202; Showing all current events.";
+    };
+
+    document.getElementById("updateBtn").onclick = () => {
+      if (table.rows.length > 0) {
+        table.rows[0].cells[3].innerText = "35";
+        status.innerHTML = "&#128221; Updated ticket price for the first event.";
+      }
+    };
+
+    document.getElementById("deleteBtn").onclick = () => {
+      if (table.rows.length > 0) {
+        table.deleteRow(table.rows.length - 1);
+        status.innerHTML = "&#10060; Deleted the last event.";
+      }
+    };
+  </script>
+
+  <script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js" defer></script>
+  <script src="https://files.bpcontent.cloud/2025/10/19/18/20251019182617-TNXHR4Z3.js" defer></script>
+</body>
+</html>
